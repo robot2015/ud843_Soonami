@@ -186,10 +186,13 @@ public class MainActivity extends AppCompatActivity {
                 if (urlConnection.getResponseCode() == 200) {
                     inputStream = urlConnection.getInputStream();
                     jsonResponse = readFromStream(inputStream);
+                } else {
+                    Log.e(LOG_TAG, "Failed URL connection.");
+                    Log.e(LOG_TAG, "URL response code: " + urlConnection.getResponseCode());
                 }
 
             } catch (IOException e) {
-                // TODO: Handle the exception
+                Log.e(LOG_TAG, "makeHttpRequest: " + e.getMessage());
             } finally {
                 if (urlConnection != null) {
                     urlConnection.disconnect();
